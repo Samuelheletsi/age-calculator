@@ -1,0 +1,76 @@
+body{
+    background-color:hsl(0, 0%, 94%) ;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.container{
+    width: 300px;
+    padding: 30px;
+    border-radius: 30px 30px 90px 30px;
+    
+    background-color: hsl(0, 0%, 100%);
+}
+.container .date-name{
+    display: flex;
+    justify-content: space-between;
+}
+.container .date-input{
+    display: flex;
+    justify-content: space-between;
+}
+.container .date-input input{
+    width: 60px;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+
+.arrow{
+    width: 60px;
+    height: 60px;
+    padding: 2px;
+    border-radius: 40px;
+    background-color: hsl(259, 100%, 65%);
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    top:-32px ;
+    right: 40%;
+    
+}
+
+
+.container .divider{
+    margin-top: 65px;
+    margin-bottom:60px;
+    /* border: 1px solid black; */
+    position: relative;
+    
+}
+
+
+.divider .arrow img{
+    width: 70px;
+    height: 30px;
+    /* border: 1px solid black; */
+}
+
+
+
+.container .display p{
+    font-family: 'Poppins';
+    font-weight:700;
+    font-size: 50px;
+    /* border: 1px solid red; */
+    margin: 0;
+    font-style: italic;
+    
+}
+
+.container .display p span{
+    color:hsl(259, 100%, 65%);
+
+}
