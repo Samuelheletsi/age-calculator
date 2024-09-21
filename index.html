@@ -1,33 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Frontend Mentor | Age calculator app</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://fonts.google.com/specimen/Poppins">
 
-     <link rel="stylesheet" href="index.css">
-     <link rel="stylesheet" href="https://fonts.google.com/specimen/Poppins">
-  
+</head>
+
 <body>
-     <div class="container">
-      <div class="date-name"><p>DAY</p><p>MONTH</p><p>YEAR</p></div>
-       <div class="date-input">
-        <input type="text" name="" id="day">
-        <input type="text" name="" id="month">
-        <input type="text" name="" id="years">
-       </div>
-       <div class="divider">
-        <hr> <div class="arrow"><img src="./assets/images/icon-arrow.svg" alt=""></div>
-       </div>
-       <div class="display">
-        <p><span id="day-val">38</span>years</p>
-        <p><span id="day-val">3</span>years</p>
-        <p><span id="day-val">26</span>years</p>
-       </div>
+  <div class="container">
+    
+    <div class="date-input">
+     <div>
+          <p class="date-name">DAY</p>
+           <input type="text" id="day" placeholder="DD" maxlength="2" pattern="\d{1,2}" title="Enter valid day">
+          <p id="error-message-day" class="error-message">Invalid day</p>
      </div>
-  
+      <div>
+          <p class="date-name">MONTH</p>
+          <input type="text" id="month" placeholder="MM" maxlength="2" pattern="\d{1,2}" title="Enter valid month">
+          <p id="error-message-month" class="error-message">Invalid month</p>
+      </div>
+      <div>
+          <p>YEAR</p>
+          <input type="text" id="year" placeholder="YYYY" maxlength="4" pattern="\d{4}" title="Enter valid year">
+          <p id="error-message-year" class="error-message">Invalid year</p>
+      </div>
+    </div>
+   
+
+    <div class="divider">
+      <hr>
+      <div class="arrow">
+        <img src="./assets/images/icon-arrow.svg" alt="">
+      </div>
+    </div>
+
+    <div class="display">
+      <p><span id="day-val">--</span> days</p>
+      <p><span id="month-val">--</span> months</p>
+      <p><span id="year-val">--</span> years</p>
+    </div>
+  </div>
+
+  <script>
+    // Select DOM elements
+    const dayInput = document.getElementById('day');
+    const monthInput = document.getElementById('month');
+    const yearInput = document.getElementById('year');
+    const errorMessageDay = document.getElementById('error-message-day');
+    const errorMessageMonth = document.getElementById('error-message-month');
+    const errorMessageYear = document.getElementById('error-message-year');
+    const dayVal = document.getElementById('day-val');
+    const monthVal = document.getElementById('month-val');
+    const yearVal = document.getElementById('year-val');
+
+    // Helper function to check if day is valid
+    function isValidDay(day) {
+      return day >= 1 && day <= 31;
+    }
+
+    // Helper function to check if month is valid
+    function isValidMonth(month) {
+      return month >= 1 && month <= 12;
+    }
+
+    // Helper function to check if year is valid (year should be 4 digits)
+    function isValidYear(year) {
+      const currentYear = new Date().getFullYear();
+      return year >= 1900 && year <= currentYear; // Adjust range as per requirement
+    }
+
+    // Helper function to check if the full date is valid
+    function isValidDate(day, month, year) {
+      const date = new Date(year, month - 1, day);
+      return date && date.getDate() == day;
+    }
+
+    // Function to handle input change and validate date
+    function handleDateInput() {
+      const day = parseInt(dayInput.value, 10);
+      const month = parseInt(monthInput.value, 10);
+      const year = parseInt(yearInput.value, 10);
+
+      // Validate day
+      if (isValidDay(day)) {
+        errorMessageDay.style.display = 'none';
+        dayVal.textContent = day;
+      } else {
+        errorMessageDay.style.display = 'block';
+        dayVal.textContent = '--';
+      }
+
+      // Validate month
+      if (isValidMonth(month)) {
+        errorMessageMonth.style.display = 'none';
+        monthVal.textContent = month;
+      } else {
+        errorMessageMonth.style.display = 'block';
+        monthVal.textContent = '--';
+      }
+
+      // Validate year
+      if (isValidYear(year)) {
+        errorMessageYear.style.display = 'none';
+        yearVal.textContent = year;
+      } else {
+        errorMessageYear.style.display = 'block';
+        yearVal.textContent = '--';
+      }
+
+      // If all are valid, check if the full date is valid
+      if (isValidDay(day) && isValidMonth(month) && isValidYear(year)) {
+        if (!isValidDate(day, month, year)) {
+          errorMessageDay.style.display = 'none';
+          errorMessageMonth.style.display = 'none';
+          errorMessageYear.style.display = 'none';
+        }
+      }
+    }
+
+    // Add event listeners for input fields
+    dayInput.addEventListener('input', handleDateInput);
+    monthInput.addEventListener('input', handleDateInput);
+    yearInput.addEventListener('input', handleDateInput);
+  </script>
+
 </body>
+
 </html>
