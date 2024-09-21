@@ -15,17 +15,17 @@
     
     <div class="date-input">
      <div>
-          <p class="date-name">DAY</p>
+          <p class="date-name1">DAY</p>
            <input type="text" id="day" placeholder="DD" maxlength="2" pattern="\d{1,2}" title="Enter valid day">
           <p id="error-message-day" class="error-message">Invalid day</p>
      </div>
       <div>
-          <p class="date-name">MONTH</p>
+          <p class="date-name2">MONTH</p>
           <input type="text" id="month" placeholder="MM" maxlength="2" pattern="\d{1,2}" title="Enter valid month">
           <p id="error-message-month" class="error-message">Invalid month</p>
       </div>
       <div>
-          <p class="date-name">YEAR</p>
+          <p class="date-name3">YEAR</p>
           <input type="text" id="year" placeholder="YYYY" maxlength="4" pattern="\d{4}" title="Enter valid year">
           <p id="error-message-year" class="error-message">Invalid year</p>
       </div>
@@ -90,35 +90,42 @@
       if (isValidDay(day)) {
         errorMessageDay.style.display = 'none';
         dayVal.textContent = day;
+        document.querySelector('.date-name1').style.color="black";
+        
       } else {
         errorMessageDay.style.display = 'block';
         dayVal.textContent = '--';
+        document.querySelector('.date-name1').style.color="red";
       }
 
       // Validate month
       if (isValidMonth(month)) {
         errorMessageMonth.style.display = 'none';
         monthVal.textContent = month;
+        document.querySelector('.date-name2').style.color="black";
       } else {
         errorMessageMonth.style.display = 'block';
         monthVal.textContent = '--';
+        document.querySelector('.date-name2').style.color="red";
       }
 
       // Validate year
       if (isValidYear(year)) {
         errorMessageYear.style.display = 'none';
         yearVal.textContent = year;
+        document.querySelector('.date-name3').style.color="black";
       } else {
         errorMessageYear.style.display = 'block';
         yearVal.textContent = '--';
+        document.querySelector('.date-name3').style.color="red";
       }
 
       // If all are valid, check if the full date is valid
       if (isValidDay(day) && isValidMonth(month) && isValidYear(year)) {
         if (!isValidDate(day, month, year)) {
-          errorMessageDay.style.display = 'none';
-          errorMessageMonth.style.display = 'none';
-          errorMessageYear.style.display = 'none';
+          errorMessageDay.style.display = 'block';
+          errorMessageMonth.style.display = 'block';
+          errorMessageYear.style.display = 'block';
         }
       }
     }
