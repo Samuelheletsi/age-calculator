@@ -31,6 +31,9 @@ body {
     font-family: 'Poppins';
     font-weight: 700;
   }
+  .container .date-input div{
+    margin-right: 7px;
+  }
   
   .arrow {
     width: 60px;
@@ -75,7 +78,7 @@ body {
   }
   
   /* Center the arrow on small screens */
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 480px) {
     .arrow {
       left: 50%;
       transform: translateX(-50%);
@@ -88,7 +91,7 @@ body {
   
   
   /* Position the arrow on the right side for larger screens */
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: 480px) {
     .container {
       width: 420px;
       margin-top: 10px;
